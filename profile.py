@@ -57,12 +57,6 @@ params = pc.bindParameters()
 # Create a Request object to start building the RSpec.
 request = pc.makeRequestRSpec()
 
-# Create a local area network for the whole cluster.
-clan = request.LAN("clan")
-clan.best_effort = True
-clan.vlan_tagging = False
-clan.link_multiplexing = False
-
 # Create a dedicated network for the RAMCloud machines.
 rclan = request.LAN("rclan")
 rclan.best_effort = True
@@ -90,8 +84,8 @@ for host in hostnames:
         params.num_rcnodes)))
 
     # All nodes in the cluster connect to clan.
-    clan_iface = node.addInterface("clan_iface")
-    clan.addInterface(clan_iface)
+    rclan_iface = node.addInterface("rclan_iface")
+    rclan.addInterface(rclan_iface)
 
     # Stuff for NFS server.
     if host == "rcnfs":
@@ -105,10 +99,6 @@ for host in hostnames:
         # Ask for a 200GB file system for RAMCloud backups
         backup_bs = node.Blockstore(host + "backup_bs", rcxx_backup_dir)
         backup_bs.size = "200GB"
-        # Add rc machine to the rclan.
-        rclan_iface = node.addInterface("rclan_iface")
-        rclan_iface.bandwidth = 10000000
-        rclan.addInterface(rclan_iface)
 
 # Generate the RSpec
 pc.printRequestRSpec(request)

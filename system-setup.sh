@@ -145,13 +145,9 @@ done
 
 # NFS clients setup (all servers are NFS clients).
 echo -e "\n===== SETTING UP NFS CLIENT ====="
-rcnfs_clan_ip=`grep "rcnfs-clan" /etc/hosts | cut -d$'\t' -f1`
 rcnfs_ctrl_ip=`ssh rcnfs "hostname -i"` 
-my_clan_ip=`grep "$(hostname --short)-clan" /etc/hosts | cut -d$'\t' -f1`
 my_ctrl_ip=`hostname -i` 
-#mkdir $SHAREDHOME_DIR; mount -t nfs4 $rcnfs_clan_ip:$RCNFS_SHAREDHOME_EXPORT_DIR $SHAREDHOME_DIR
 mkdir $SHAREDHOME_DIR; mount -t nfs4 $rcnfs_ctrl_ip:$RCNFS_SHAREDHOME_EXPORT_DIR $SHAREDHOME_DIR
-#echo "$rcnfs_clan_ip:$RCNFS_SHAREDHOME_EXPORT_DIR $SHAREDHOME_DIR nfs4 rw,sync,hard,intr,addr=$my_clan_ip 0 0" >> /etc/fstab
 echo "$rcnfs_ctrl_ip:$RCNFS_SHAREDHOME_EXPORT_DIR $SHAREDHOME_DIR nfs4 rw,sync,hard,intr,addr=$my_ctrl_ip 0 0" >> /etc/fstab
 
 # Change default shell to bash for all users on all machines

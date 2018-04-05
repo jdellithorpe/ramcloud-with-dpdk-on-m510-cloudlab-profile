@@ -47,7 +47,7 @@ echo "default_disk = '-f $RCXX_BACKUP_DIR/backup.log'" >> localconfig.py
 echo -e "\n===== SETUP RAMCLOUD LOCALCONFIG.PY ====="
 while read -r ip hostname alias1 alias2 alias3
 do 
-  if [[ $hostname =~ ^rc[0-9]+-clan$ ]] 
+  if [[ $hostname =~ ^rc[0-9]+-rclan$ ]] 
   then
     rcnames=("${rcnames[@]}" "$hostname") 
   fi 
