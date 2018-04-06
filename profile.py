@@ -3,6 +3,9 @@ CloudLab profile for running RAMCloud with DPDK enabled on the CloudLab Utah
 m510 machines.
 
 Instructions:
+To test that everything is working, run the following command from the RAMCloud
+directory:
+./scripts/clusterperf.py -r 0 --transport=basic+dpdk --dpdkPort 1 --verbose --superuser echo_basic
 """
 
 import re
