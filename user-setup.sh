@@ -68,3 +68,6 @@ do
     echo -n "$tuplestr, " >> localconfig.py
   fi
 done
+
+echo -e "\n===== USER SETUP COMPLETE ====="
+

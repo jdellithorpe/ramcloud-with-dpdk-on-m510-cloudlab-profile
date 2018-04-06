@@ -304,6 +304,8 @@ fi
 # this flag after a reboot to prevent ourselves from re-running everything.
 > /local/setup_done
 
+echo -e "\n===== SYSTEM SETUP COMPLETE ====="
+
 # Reboot required on rc machines for kernel parameter changes to take effect.
 if [[ $(hostname --short) =~ ^rc[0-9][0-9]$ ]]
 then
