@@ -106,12 +106,6 @@ params = pc.bindParameters()
 # Create a Request object to start building the RSpec.
 request = pc.makeRequestRSpec()
 
-# Create a dedicated network for the RAMCloud machines.
-rclan = request.LAN("rclan")
-rclan.best_effort = True
-rclan.vlan_tagging = False
-rclan.link_multiplexing = False
-
 # Setup node names so that existing RAMCloud scripts can be used on the
 # cluster.
 hostnames = ["rcmaster", "rcnfs"]
@@ -131,10 +125,6 @@ for host in hostnames:
         command="sudo /local/repository/system-setup.sh %s %s %s %s" % \
         (rcnfs_sharedhome_export_dir, rcxx_backup_dir, params.username,
         params.num_rcnodes)))
-
-    # All nodes in the cluster connect to clan.
-    rclan_iface = node.addInterface("rclan_iface")
-    rclan.addInterface(rclan_iface)
 
     # Stuff for NFS server.
     if host == "rcnfs":
