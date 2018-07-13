@@ -109,7 +109,7 @@ request = pc.makeRequestRSpec()
 # Create a dedicated network for the RAMCloud machines.
 rclan = request.LAN("rclan")
 rclan.best_effort = True
-rclan.vlan_tagging = False
+rclan.vlan_tagging = True
 rclan.link_multiplexing = False
 
 # Setup node names so that existing RAMCloud scripts can be used on the
